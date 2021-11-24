@@ -1,6 +1,6 @@
 {
   "name": "@donkeyclip/lottie",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Lottie plugin for motorcortex",
   "main": "dist/lottie.cjs.js",
   "module": "dist/lottie.esm.js",
