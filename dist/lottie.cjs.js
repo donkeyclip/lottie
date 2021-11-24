@@ -1208,7 +1208,7 @@ var config = {
 	}
 };
 var peerDependencies = {
-	"@donkeyclip/motorcortex": "7.5.4"
+	"@donkeyclip/motorcortex": "^7.6.2"
 };
 var devDependencies = {
 	"@babel/cli": "7.16.0",
