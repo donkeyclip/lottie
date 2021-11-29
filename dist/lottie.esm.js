@@ -1283,9 +1283,7 @@ var index = {
         type: "object",
         props: {
           fraction: {
-            type: 'number' // min:0,
-            // max:1
-
+            type: "number"
           }
         }
       }
