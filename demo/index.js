@@ -9,12 +9,17 @@ const clip = new MotorCortex.HTMLClip({
     </div>`,
   css: `
         .container{
-            width: 1440px;
-            height: 1440px;
-        }
-        .container>div{
           width: 1440px;
           height: 1440px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: #fff;
+        }
+        #myclip{
+          width: 160px;
+          height: 160px;
+          transform: scale(5.5);
         }
     `,
   host: document.getElementById("clip"),
@@ -24,35 +29,42 @@ const clip = new MotorCortex.HTMLClip({
   },
 });
 
-
-const newCustomClip = new MyPlugin.Clip({
-
-  path:"./dots-backgorund.json",
-  autoloop: false
-},{
-  selector: "#myclip",
-});
-
-const play = new MyPlugin.Play({
-  animatedAttrs:{
-    fraction: .5
+const newCustomClip = new MyPlugin.Clip(
+  {
+    path: "https://donkeyclip.github.io/lottie/demo/demo.json",
+    autoloop: false,
+  },
+  {
+    selector: "#myclip",
   }
-},{
-  duration:3000,
-  selector: "!#lottie"
-})
+);
 
-const play2 = new MyPlugin.Play({
-  animatedAttrs:{
-    fraction: 1
+const play = new MyPlugin.Play(
+  {
+    animatedAttrs: {
+      fraction: 0.5,
+    },
+  },
+  {
+    duration: 1500,
+    selector: "!#lottie",
   }
-},{
-  duration:3000,
-  selector: "!#lottie"
-})
+);
 
-newCustomClip.addIncident(play,0);
-newCustomClip.addIncident(play2,3000);
+const play2 = new MyPlugin.Play(
+  {
+    animatedAttrs: {
+      fraction: 0.9999,
+    },
+  },
+  {
+    duration: 1500,
+    selector: "!#lottie",
+  }
+);
+
+newCustomClip.addIncident(play, 0);
+newCustomClip.addIncident(play2, 1500);
 clip.addIncident(newCustomClip, 0);
 
-const player = new Player({ clip });
+new Player({ clip, backgroundColor: "#fff", loop: true, autoplay: true });

@@ -1,44 +1,77 @@
-# motorcortex-plugin-starter
+# lottie
 
-## Purpose
+## Installation
 
-A starter plugin for creating MotorCortex plugins.
+```bash
+$ npm install --save @donkeyclip/lottie
+# OR
+$ yarn add @donkeyclip/lottie
+```
 
-## Structure and Contents
+## Importing
 
-It includes:
+```javascript
+import MotorCortex from "@donkeyclip/motorcortex";
+import LottieDefinition from "@donkeyclip/lottie";
+```
 
-- rollup configuration & ready to use build tools
-- a pre-configured webpack for the needs of the demo
-- pre-configured eslint and babel
-- and a set of ready to work on, Incidents:
-  - **Effect**, for developing a custom Effect
-  - **HTMLClip**, for developing a pre-configured HTML Clip with HTML, CSS and Incidents
-  - **Combo**, for developing custom, pre-configured Combos
-  - **Clip**, for developing custom browser Clips, such as canvas
+## Loading
 
-These Incidents are the starting point for developing a plugin. They extend the right
-Classes from MotorCortex SDK and they have blank implementations of all the methods that
-should or can be overwritten, with comments.
+```javascript
+const Lottie = MotorCortex.loadPlugin(LottieDefinition);
+```
 
-Along with the comments you can always refer to <a href="https://docs.motorcortexjs.com/" target="_blank">MotorCortex documentation</a>
-for detailed information on how to implement a plugin.
+## API
 
-## How to use
+The Plugin exposes one Incident and one Clip:
 
-Once you've decided what exactly your pluign is going to do and once we've decided on the type of Incident(s)
-you need to implement, you can start directly from the basic/blank implementations and either work on them directly
-or just copy them.
-Change the names of the files, name your Classes however you want but always make sure you import and
-expose everything properly on your index.js file.
+### Clip
 
-Also, it's imortant to change your package.json file so you can name your pluign, provide details and more.
+```javascript
+const newCustomClip = new Lottie.Clip(
+  {
+    path: "https://donkeyclip.github.io/lottie/demo//demo.json",
+    autoloop: false,
+  },
+  {
+    selector: "#myclip",
+  }
+);
+```
 
-## Commands
+### Clip attrs
 
-- `npm run build`: builds the dist of your pluign along with the demo
-- `npm run build:demo`: builds just the demo
-- `npm start`: builds everything and starts the demo
-- `npm start:demo`: just starts the demo
+| Name     |                         Are                          | Values |
+| -------- | :--------------------------------------------------: | -----: |
+| path     |            the path of lottie.json fille             | string |
+| autoloop | autoloop will auto play in loop the lottie animation |   bool |
 
-## Have fun!!!
+### Play
+
+```javascript
+const play = new Lottie.Play(
+  {
+    animatedAttrs: {
+      fraction: 0.5,
+    },
+  },
+  {
+    duration: 1500,
+    selector: "!#lottie",
+  }
+);
+```
+
+### Play attrs
+
+| Name     |                      Are                      |          Values |
+| -------- | :-------------------------------------------: | --------------: |
+| fraction | how many fractions of the clip will be played | num from 0 to 1 |
+
+Demo:[https://donkeyclip.github.io/lottie/demo/](https://donkeyclip.github.io/lottie/demo/)
+
+## License
+
+[MIT License](https://opensource.org/licenses/MIT)
+
+[<img src="https://presskit.donkeyclip.com/logos/donkey%20clip%20logo.svg" width=250></img>](https://donkeyclip.com)
