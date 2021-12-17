@@ -1225,7 +1225,7 @@ var devDependencies = {
 	"@rollup/plugin-node-resolve": "13.1.1",
 	"@size-limit/preset-big-lib": "6.0.4",
 	"babel-loader": "8.2.3",
-	concurrently: "6.4.0",
+	concurrently: "6.5.0",
 	"core-js": "3.19.3",
 	"css-loader": "6.5.1",
 	eslint: "7.32.0",
