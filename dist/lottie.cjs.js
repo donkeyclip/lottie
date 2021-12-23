@@ -125,7 +125,7 @@ var fails$1 = fails$3;
 var createElement = documentCreateElement; // Thank's IE8 for his funny defineProperty
 
 var ie8DomDefine = !DESCRIPTORS$2 && !fails$1(function () {
-  // eslint-disable-next-line es/no-object-defineproperty -- requied for testing
+  // eslint-disable-next-line es/no-object-defineproperty -- required for testing
   return Object.defineProperty(createElement('div'), 'a', {
     get: function () {
       return 7;
@@ -296,7 +296,7 @@ var store = sharedStore;
 (shared$1.exports = function (key, value) {
   return store[key] || (store[key] = value !== undefined ? value : {});
 })('versions', []).push({
-  version: '3.20.0',
+  version: '3.20.1',
   mode: 'global',
   copyright: '© 2021 Denis Pushkarev (zloirock.ru)'
 });
@@ -1232,7 +1232,7 @@ var devDependencies = {
 	"@size-limit/preset-big-lib": "6.0.4",
 	"babel-loader": "8.2.3",
 	concurrently: "6.5.1",
-	"core-js": "3.20.0",
+	"core-js": "3.20.1",
 	"css-loader": "6.5.1",
 	eslint: "7.32.0",
 	"eslint-config-prettier": "8.3.0",
