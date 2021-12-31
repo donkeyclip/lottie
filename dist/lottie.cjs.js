@@ -451,14 +451,14 @@ function _inherits(subClass, superClass) {
     throw new TypeError("Super expression must either be null or a function");
   }
 
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      writable: true,
+      configurable: true
+    }
+  });
   Object.defineProperty(subClass, "prototype", {
-    value: Object.create(superClass && superClass.prototype, {
-      constructor: {
-        value: subClass,
-        writable: true,
-        configurable: true
-      }
-    }),
     writable: false
   });
   if (superClass) _setPrototypeOf(subClass, superClass);
@@ -1217,12 +1217,12 @@ var peerDependencies = {
 	"@donkeyclip/motorcortex": ">= 7.6.2 < 8"
 };
 var devDependencies = {
-	"@babel/cli": "7.16.0",
-	"@babel/core": "7.16.5",
+	"@babel/cli": "7.16.7",
+	"@babel/core": "7.16.7",
 	"@babel/eslint-parser": "7.16.5",
-	"@babel/plugin-syntax-jsx": "7.16.5",
-	"@babel/plugin-transform-react-jsx": "7.16.5",
-	"@babel/preset-env": "7.16.5",
+	"@babel/plugin-syntax-jsx": "7.16.7",
+	"@babel/plugin-transform-react-jsx": "7.16.7",
+	"@babel/preset-env": "7.16.7",
 	"@donkeyclip/motorcortex": "7.6.6",
 	"@donkeyclip/motorcortex-player": "2.4.4",
 	"@rollup/plugin-babel": "5.3.0",
