@@ -8,7 +8,7 @@ var MotorCortex__default = /*#__PURE__*/_interopDefaultLegacy(MotorCortex);
 
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
-var fails$3 = function (exec) {
+var fails$4 = function (exec) {
   try {
     return !!exec();
   } catch (error) {
@@ -16,9 +16,9 @@ var fails$3 = function (exec) {
   }
 };
 
-var fails$2 = fails$3; // Detect IE8's incomplete defineProperty implementation
+var fails$3 = fails$4; // Detect IE8's incomplete defineProperty implementation
 
-var descriptors = !fails$2(function () {
+var descriptors = !fails$3(function () {
   // eslint-disable-next-line es/no-object-defineproperty -- required for testing
   return Object.defineProperty({}, 1, {
     get: function () {
@@ -30,9 +30,9 @@ var descriptors = !fails$2(function () {
 var FunctionPrototype$2 = Function.prototype;
 var bind = FunctionPrototype$2.bind;
 var call$3 = FunctionPrototype$2.call;
-var callBind = bind && bind.bind(call$3);
+var uncurryThis$4 = bind && bind.bind(call$3, call$3);
 var functionUncurryThis = bind ? function (fn) {
-  return fn && callBind(call$3, fn);
+  return fn && uncurryThis$4(fn);
 } : function (fn) {
   return fn && function () {
     return call$3.apply(fn, arguments);
@@ -78,22 +78,22 @@ var hasOwnProperty_1 = Object.hasOwn || function hasOwn(it, key) {
   return hasOwnProperty(toObject(it), key);
 };
 
-var DESCRIPTORS$3 = descriptors;
+var DESCRIPTORS$4 = descriptors;
 var hasOwn$1 = hasOwnProperty_1;
 var FunctionPrototype$1 = Function.prototype; // eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
 
-var getDescriptor = DESCRIPTORS$3 && Object.getOwnPropertyDescriptor;
+var getDescriptor = DESCRIPTORS$4 && Object.getOwnPropertyDescriptor;
 var EXISTS$1 = hasOwn$1(FunctionPrototype$1, 'name'); // additional protection from minified / mangled / dropped function names
 
 var PROPER = EXISTS$1 && function something() {
   /* empty */
 }.name === 'something';
 
-var CONFIGURABLE = EXISTS$1 && (!DESCRIPTORS$3 || DESCRIPTORS$3 && getDescriptor(FunctionPrototype$1, 'name').configurable);
+var CONFIGURABLE$1 = EXISTS$1 && (!DESCRIPTORS$4 || DESCRIPTORS$4 && getDescriptor(FunctionPrototype$1, 'name').configurable);
 var functionName = {
   EXISTS: EXISTS$1,
   PROPER: PROPER,
-  CONFIGURABLE: CONFIGURABLE
+  CONFIGURABLE: CONFIGURABLE$1
 };
 
 var objectDefineProperty = {};
@@ -120,17 +120,31 @@ var documentCreateElement = function (it) {
   return EXISTS ? document$1.createElement(it) : {};
 };
 
-var DESCRIPTORS$2 = descriptors;
-var fails$1 = fails$3;
+var DESCRIPTORS$3 = descriptors;
+var fails$2 = fails$4;
 var createElement = documentCreateElement; // Thank's IE8 for his funny defineProperty
 
-var ie8DomDefine = !DESCRIPTORS$2 && !fails$1(function () {
+var ie8DomDefine = !DESCRIPTORS$3 && !fails$2(function () {
   // eslint-disable-next-line es/no-object-defineproperty -- required for testing
   return Object.defineProperty(createElement('div'), 'a', {
     get: function () {
       return 7;
     }
   }).a != 7;
+});
+
+var DESCRIPTORS$2 = descriptors;
+var fails$1 = fails$4; // V8 ~ Chrome 36-
+// https://bugs.chromium.org/p/v8/issues/detail?id=3334
+
+var v8PrototypeDefineBug = DESCRIPTORS$2 && fails$1(function () {
+  // eslint-disable-next-line es/no-object-defineproperty -- required for testing
+  return Object.defineProperty(function () {
+    /* empty */
+  }, 'prototype', {
+    value: 42,
+    writable: false
+  }).prototype != 42;
 });
 
 var global$c = global$g;
@@ -195,7 +209,7 @@ var engineV8Version = version$1;
 
 /* eslint-disable es/no-symbol -- required for testing */
 var V8_VERSION = engineV8Version;
-var fails = fails$3; // eslint-disable-next-line es/no-object-getownpropertysymbols -- required for testing
+var fails = fails$4; // eslint-disable-next-line es/no-object-getownpropertysymbols -- required for testing
 
 var nativeSymbol = !!Object.getOwnPropertySymbols && !fails(function () {
   var symbol = Symbol(); // Chrome 38 Symbol has incorrect toString conversion
@@ -296,9 +310,9 @@ var store = sharedStore;
 (shared$1.exports = function (key, value) {
   return store[key] || (store[key] = value !== undefined ? value : {});
 })('versions', []).push({
-  version: '3.20.1',
+  version: '3.20.2',
   mode: 'global',
-  copyright: '© 2021 Denis Pushkarev (zloirock.ru)'
+  copyright: '© 2022 Denis Pushkarev (zloirock.ru)'
 });
 
 var uncurryThis$1 = functionUncurryThis;
@@ -376,14 +390,39 @@ var toPropertyKey$1 = function (argument) {
 var global$1 = global$g;
 var DESCRIPTORS$1 = descriptors;
 var IE8_DOM_DEFINE = ie8DomDefine;
+var V8_PROTOTYPE_DEFINE_BUG = v8PrototypeDefineBug;
 var anObject = anObject$1;
 var toPropertyKey = toPropertyKey$1;
 var TypeError$1 = global$1.TypeError; // eslint-disable-next-line es/no-object-defineproperty -- safe
 
-var $defineProperty = Object.defineProperty; // `Object.defineProperty` method
+var $defineProperty = Object.defineProperty; // eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
+
+var $getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
+var ENUMERABLE = 'enumerable';
+var CONFIGURABLE = 'configurable';
+var WRITABLE = 'writable'; // `Object.defineProperty` method
 // https://tc39.es/ecma262/#sec-object.defineproperty
 
-objectDefineProperty.f = DESCRIPTORS$1 ? $defineProperty : function defineProperty(O, P, Attributes) {
+objectDefineProperty.f = DESCRIPTORS$1 ? V8_PROTOTYPE_DEFINE_BUG ? function defineProperty(O, P, Attributes) {
+  anObject(O);
+  P = toPropertyKey(P);
+  anObject(Attributes);
+
+  if (typeof O === 'function' && P === 'prototype' && 'value' in Attributes && WRITABLE in Attributes && !Attributes[WRITABLE]) {
+    var current = $getOwnPropertyDescriptor(O, P);
+
+    if (current && current[WRITABLE]) {
+      O[P] = Attributes.value;
+      Attributes = {
+        configurable: CONFIGURABLE in Attributes ? Attributes[CONFIGURABLE] : current[CONFIGURABLE],
+        enumerable: ENUMERABLE in Attributes ? Attributes[ENUMERABLE] : current[ENUMERABLE],
+        writable: false
+      };
+    }
+  }
+
+  return $defineProperty(O, P, Attributes);
+} : $defineProperty : function defineProperty(O, P, Attributes) {
   anObject(O);
   P = toPropertyKey(P);
   anObject(Attributes);
@@ -1232,7 +1271,7 @@ var devDependencies = {
 	"@size-limit/preset-big-lib": "6.0.4",
 	"babel-loader": "8.2.3",
 	concurrently: "6.5.1",
-	"core-js": "3.20.1",
+	"core-js": "3.20.2",
 	"css-loader": "6.5.1",
 	eslint: "7.32.0",
 	"eslint-config-prettier": "8.3.0",
