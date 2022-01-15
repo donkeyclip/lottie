@@ -2,7 +2,7 @@ import MotorCortex from '@donkeyclip/motorcortex';
 
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
-var fails$4 = function (exec) {
+var fails$5 = function (exec) {
   try {
     return !!exec();
   } catch (error) {
@@ -10,9 +10,9 @@ var fails$4 = function (exec) {
   }
 };
 
-var fails$3 = fails$4; // Detect IE8's incomplete defineProperty implementation
+var fails$4 = fails$5; // Detect IE8's incomplete defineProperty implementation
 
-var descriptors = !fails$3(function () {
+var descriptors = !fails$4(function () {
   // eslint-disable-next-line es/no-object-defineproperty -- required for testing
   return Object.defineProperty({}, 1, {
     get: function () {
@@ -21,11 +21,22 @@ var descriptors = !fails$3(function () {
   })[1] != 7;
 });
 
+var fails$3 = fails$5;
+var functionBindNative = !fails$3(function () {
+  var test = function () {
+    /* empty */
+  }.bind(); // eslint-disable-next-line no-prototype-builtins -- safe
+
+
+  return typeof test != 'function' || test.hasOwnProperty('prototype');
+});
+
+var NATIVE_BIND$1 = functionBindNative;
 var FunctionPrototype$2 = Function.prototype;
 var bind = FunctionPrototype$2.bind;
 var call$3 = FunctionPrototype$2.call;
-var uncurryThis$4 = bind && bind.bind(call$3, call$3);
-var functionUncurryThis = bind ? function (fn) {
+var uncurryThis$4 = NATIVE_BIND$1 && bind.bind(call$3, call$3);
+var functionUncurryThis = NATIVE_BIND$1 ? function (fn) {
   return fn && uncurryThis$4(fn);
 } : function (fn) {
   return fn && function () {
@@ -115,8 +126,8 @@ var documentCreateElement = function (it) {
 };
 
 var DESCRIPTORS$3 = descriptors;
-var fails$2 = fails$4;
-var createElement = documentCreateElement; // Thank's IE8 for his funny defineProperty
+var fails$2 = fails$5;
+var createElement = documentCreateElement; // Thanks to IE8 for its funny defineProperty
 
 var ie8DomDefine = !DESCRIPTORS$3 && !fails$2(function () {
   // eslint-disable-next-line es/no-object-defineproperty -- required for testing
@@ -128,7 +139,7 @@ var ie8DomDefine = !DESCRIPTORS$3 && !fails$2(function () {
 });
 
 var DESCRIPTORS$2 = descriptors;
-var fails$1 = fails$4; // V8 ~ Chrome 36-
+var fails$1 = fails$5; // V8 ~ Chrome 36-
 // https://bugs.chromium.org/p/v8/issues/detail?id=3334
 
 var v8PrototypeDefineBug = DESCRIPTORS$2 && fails$1(function () {
@@ -151,8 +162,9 @@ var anObject$1 = function (argument) {
   throw TypeError$5(String$2(argument) + ' is not an object');
 };
 
+var NATIVE_BIND = functionBindNative;
 var call$2 = Function.prototype.call;
-var functionCall = call$2.bind ? call$2.bind(call$2) : function () {
+var functionCall = NATIVE_BIND ? call$2.bind(call$2) : function () {
   return call$2.apply(call$2, arguments);
 };
 
@@ -203,7 +215,7 @@ var engineV8Version = version$1;
 
 /* eslint-disable es/no-symbol -- required for testing */
 var V8_VERSION = engineV8Version;
-var fails = fails$4; // eslint-disable-next-line es/no-object-getownpropertysymbols -- required for testing
+var fails = fails$5; // eslint-disable-next-line es/no-object-getownpropertysymbols -- required for testing
 
 var nativeSymbol = !!Object.getOwnPropertySymbols && !fails(function () {
   var symbol = Symbol(); // Chrome 38 Symbol has incorrect toString conversion
@@ -304,9 +316,11 @@ var store = sharedStore;
 (shared$1.exports = function (key, value) {
   return store[key] || (store[key] = value !== undefined ? value : {});
 })('versions', []).push({
-  version: '3.20.2',
+  version: '3.20.3',
   mode: 'global',
-  copyright: '© 2022 Denis Pushkarev (zloirock.ru)'
+  copyright: '© 2014-2022 Denis Pushkarev (zloirock.ru)',
+  license: 'https://github.com/zloirock/core-js/blob/v3.20.3/LICENSE',
+  source: 'https://github.com/zloirock/core-js'
 });
 
 var uncurryThis$1 = functionUncurryThis;
@@ -1265,7 +1279,7 @@ var devDependencies = {
 	"@size-limit/preset-big-lib": "6.0.4",
 	"babel-loader": "8.2.3",
 	concurrently: "6.5.1",
-	"core-js": "3.20.2",
+	"core-js": "3.20.3",
 	"css-loader": "6.5.1",
 	eslint: "7.32.0",
 	"eslint-config-prettier": "8.3.0",
