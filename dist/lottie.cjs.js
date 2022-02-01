@@ -322,10 +322,10 @@ var store = sharedStore;
 (shared$1.exports = function (key, value) {
   return store[key] || (store[key] = value !== undefined ? value : {});
 })('versions', []).push({
-  version: '3.20.3',
+  version: '3.21.0',
   mode: 'global',
   copyright: '© 2014-2022 Denis Pushkarev (zloirock.ru)',
-  license: 'https://github.com/zloirock/core-js/blob/v3.20.3/LICENSE',
+  license: 'https://github.com/zloirock/core-js/blob/v3.21.0/LICENSE',
   source: 'https://github.com/zloirock/core-js'
 });
 
@@ -1285,7 +1285,7 @@ var devDependencies = {
 	"@size-limit/preset-big-lib": "6.0.4",
 	"babel-loader": "8.2.3",
 	concurrently: "6.5.1",
-	"core-js": "3.20.3",
+	"core-js": "3.21.0",
 	"css-loader": "6.5.1",
 	eslint: "7.32.0",
 	"eslint-config-prettier": "8.3.0",
