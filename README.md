@@ -21,7 +21,7 @@
 [Check it out here](https://donkeyclip.github.io/lottie/demo/)
 
 # Intro / Features
-Lottie brings some capabilities of [Lottie](http://airbnb.io/lottie/#/?"target="_blank) Library into MotorCortex.
+Lottie brings some capabilities of [Lottie](http://airbnb.io/lottie/#/) Library into MotorCortex.
 Lottie plugin helps you control a lottie file which is a JSON-based animation file format with small size. With this Plugin you can manipulate your lottie any way you like and create unique animations.
 
 The Plugin exposes two Incidents in total:
