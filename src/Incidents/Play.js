@@ -10,8 +10,8 @@ export default class MyEffect extends MotorCortex.Effect{
         
     }
 
-    onProgress(fraction){
+    onProgress(ms){
         const lottie = this.element.entity;
-        lottie.goToAndStop(((this.targetValue - this.initialValue)* fraction+ this.initialValue)*lottie.totalFrames,true);
+        lottie.goToAndStop(((this.targetValue - this.initialValue)* this.getFraction(ms)+ this.initialValue)*lottie.totalFrames,true);
     }
 }
