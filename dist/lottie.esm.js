@@ -1226,7 +1226,7 @@ var MyClip = /*#__PURE__*/function (_MotorCortex$BrowserC) {
 }(MotorCortex.BrowserClip);
 
 var name = "@donkeyclip/lottie";
-var version = "1.0.0";
+var version = "2.0.0";
 var description = "Lottie plugin for motorcortex";
 var main = "dist/lottie.cjs.js";
 var module = "dist/lottie.esm.js";
