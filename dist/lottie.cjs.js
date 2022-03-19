@@ -604,9 +604,9 @@ var MyEffect = /*#__PURE__*/function (_MotorCortex$Effect) {
     value: function onGetContext() {}
   }, {
     key: "onProgress",
-    value: function onProgress(fraction) {
+    value: function onProgress(ms) {
       var lottie = this.element.entity;
-      lottie.goToAndStop(((this.targetValue - this.initialValue) * fraction + this.initialValue) * lottie.totalFrames, true);
+      lottie.goToAndStop(((this.targetValue - this.initialValue) * this.getFraction(ms) + this.initialValue) * lottie.totalFrames, true);
     }
   }]);
 
@@ -1267,7 +1267,7 @@ var config = {
 	}
 };
 var peerDependencies = {
-	"@donkeyclip/motorcortex": ">= 7.6.2 < 8"
+	"@donkeyclip/motorcortex": ">= 8 < 9"
 };
 var devDependencies = {
 	"@babel/cli": "7.17.6",
@@ -1276,7 +1276,7 @@ var devDependencies = {
 	"@babel/plugin-syntax-jsx": "7.16.7",
 	"@babel/plugin-transform-react-jsx": "7.17.3",
 	"@babel/preset-env": "7.16.11",
-	"@donkeyclip/motorcortex": "7.9.3",
+	"@donkeyclip/motorcortex": "8.0.0",
 	"@donkeyclip/motorcortex-player": "2.5.2",
 	"@rollup/plugin-babel": "5.3.1",
 	"@rollup/plugin-commonjs": "21.0.2",
