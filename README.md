@@ -1,4 +1,34 @@
-# lottie
+# Lottie
+
+**Table of Contents**
+
+- [Lottie](#lottie)
+  - [Demo](#demo)
+- [Intro / Features](#intro--features)
+- [Getting Started](#getting-started)
+  - [Installation](#installation)
+  - [Importing and Loading](#importing-and-loading)
+- [Creating Incidents](#creating-incidents)
+  - [Clip](#clip)
+  - [Play](#play)
+- [Adding Incidents in your clip](#adding-incidents-in-your-clip)
+- [Contributing](#contributing)
+- [License](#license)
+- [Sponsored by](#sponsored-by)
+
+## Demo
+
+[Check it out here](https://donkeyclip.github.io/lottie/demo/)
+
+# Intro / Features
+Lottie brings some capabilities of [Lottie](http://airbnb.io/lottie/#/) Library into MotorCortex.
+Lottie plugin helps you control a lottie file which is a JSON-based animation file format with small size. With this Plugin you can manipulate your lottie any way you like and create unique animations.
+
+The Plugin exposes two Incidents in total:
+* Clip
+* Play Incident
+
+# Getting Started
 
 ## Installation
 
@@ -8,24 +38,16 @@ $ npm install --save @donkeyclip/lottie
 $ yarn add @donkeyclip/lottie
 ```
 
-## Importing
+## Importing and loading
 
 ```javascript
-import MotorCortex from "@donkeyclip/motorcortex";
+import { loadPlugin } from "@donkeyclip/motorcortex";
 import LottieDefinition from "@donkeyclip/lottie";
+const Lottie = loadPlugin(LottieDefinition);
 ```
+# Creating Incidents
 
-## Loading
-
-```javascript
-const Lottie = MotorCortex.loadPlugin(LottieDefinition);
-```
-
-## API
-
-The Plugin exposes one Incident and one Clip:
-
-### Clip
+## Clip
 
 ```javascript
 const newCustomClip = new Lottie.Clip(
@@ -46,7 +68,7 @@ const newCustomClip = new Lottie.Clip(
 | path     |            the path of lottie.json fille             | string |
 | autoloop | autoloop will auto play in loop the lottie animation |   bool |
 
-### Play
+## Play
 
 ```javascript
 const play = new Lottie.Play(
@@ -68,10 +90,24 @@ const play = new Lottie.Play(
 | -------- | :-------------------------------------------: | --------------: |
 | fraction | how many fractions of the clip will be played | num from 0 to 1 |
 
-Demo:[https://donkeyclip.github.io/lottie/demo/](https://donkeyclip.github.io/lottie/demo/)
+# Adding Incidents in your clip
 
-## License
+```javascript
+lottieClip.addIncident(playIncident, startTime);
+```
+
+# Contributing 
+
+In general, we follow the "fork-and-pull" Git workflow, so if you want to submit patches and additions you should follow the next steps:
+1.	**Fork** the repo on GitHub
+2.	**Clone** the project to your own machine
+3.	**Commit** changes to your own branch
+4.	**Push** your work back up to your fork
+5.	Submit a **Pull request** so that we can review your changes
+
+# License
 
 [MIT License](https://opensource.org/licenses/MIT)
 
+# Sponsored by
 [<img src="https://presskit.donkeyclip.com/logos/donkey%20clip%20logo.svg" width=250></img>](https://donkeyclip.com)
