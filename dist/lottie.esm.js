@@ -1290,7 +1290,7 @@ var devDependencies = {
 	"eslint-plugin-prettier": "4.0.0",
 	"eslint-plugin-promise": "5.2.0",
 	husky: "7.0.4",
-	prettier: "2.6.1",
+	prettier: "2.6.2",
 	rimraf: "3.0.2",
 	rollup: "2.70.1",
 	"rollup-plugin-terser": "7.0.2",
