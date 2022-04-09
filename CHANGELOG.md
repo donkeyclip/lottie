@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.1.0](https://github.com/donkeyclip/lottie/compare/v2.0.0...v2.1.0) (2022-04-09)
+
+
+### Features
+
+* drop explorer 11 support ([14ac22f](https://github.com/donkeyclip/lottie/commit/14ac22fc8fa97d849559a9777fbc24fca343cb9e))
+* update compatibility with motorcortex ([8725170](https://github.com/donkeyclip/lottie/commit/8725170fe62ec042a167d08531ab178e8f3adec1))
+
 ## [2.0.0](https://github.com/donkeyclip/lottie/compare/v1.0.0...v2.0.0) (2022-03-19)
 
 
