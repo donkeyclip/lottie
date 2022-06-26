@@ -1,5 +1,12 @@
 # Changelog
 
+### [2.1.1](https://github.com/donkeyclip/lottie/compare/v2.1.0...v2.1.1) (2022-06-26)
+
+
+### Bug Fixes
+
+* import only effect instead of full MC ([ef8d105](https://github.com/donkeyclip/lottie/commit/ef8d105342ac0b032b81f7e7bb924a3bc19bb7bd))
+
 ## [2.1.0](https://github.com/donkeyclip/lottie/compare/v2.0.0...v2.1.0) (2022-04-09)
 
 
