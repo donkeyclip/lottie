@@ -1,7 +1,7 @@
-import MotorCortex from "@donkeyclip/motorcortex";
+import { BrowserClip } from "@donkeyclip/motorcortex";
 import lottieWeb from "lottie-web";
 
-export default class MyClip extends MotorCortex.BrowserClip {
+export default class MyClip extends BrowserClip {
   onAfterRender() {
     const animation = lottieWeb.loadAnimation({
       container: this.context.rootElement,
