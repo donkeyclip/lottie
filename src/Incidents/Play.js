@@ -1,17 +1,19 @@
-import MotorCortex from '@donkeyclip/motorcortex';
+import { Effect } from "@donkeyclip/motorcortex";
 
-export default class MyEffect extends MotorCortex.Effect{
+export default class MyEffect extends Effect {
+  getScratchValue() {
+    return 0;
+  }
 
-    getScratchValue(){
-        return 0;
-    }
-    
-    onGetContext(){
-        
-    }
+  onGetContext() {}
 
-    onProgress(ms){
-        const lottie = this.element.entity;
-        lottie.goToAndStop(((this.targetValue - this.initialValue)* this.getFraction(ms)+ this.initialValue)*lottie.totalFrames,true);
-    }
+  onProgress(ms) {
+    const lottie = this.element.entity;
+    lottie.goToAndStop(
+      ((this.targetValue - this.initialValue) * this.getFraction(ms) +
+        this.initialValue) *
+        lottie.totalFrames,
+      true
+    );
+  }
 }
