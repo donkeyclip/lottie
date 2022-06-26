@@ -605,7 +605,7 @@ class MyClip extends BrowserClip {
 }
 
 var name = "@donkeyclip/lottie";
-var version = "2.1.0";
+var version = "2.1.1";
 var description = "Lottie plugin for motorcortex";
 var main = "dist/lottie.cjs.js";
 var module = "dist/lottie.esm.js";
