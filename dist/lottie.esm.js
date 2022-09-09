@@ -676,7 +676,7 @@ var devDependencies = {
 	"size-limit": "6.0.4",
 	webpack: "5.74.0",
 	"webpack-cli": "4.10.0",
-	"webpack-dev-server": "4.10.0"
+	"webpack-dev-server": "4.11.0"
 };
 var dependencies = {
 	browserify: "^17.0.0",
