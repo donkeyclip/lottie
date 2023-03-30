@@ -6,14 +6,11 @@ class MyEffect extends motorcortex.Effect {
   getScratchValue() {
     return 0;
   }
-
   onGetContext() {}
-
   onProgress(ms) {
     const lottie = this.element.entity;
     lottie.goToAndStop(((this.targetValue - this.initialValue) * this.getFraction(ms) + this.initialValue) * lottie.totalFrames, true);
   }
-
 }
 
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
@@ -603,7 +600,6 @@ class MyClip extends motorcortex.BrowserClip {
     });
     this.setCustomEntity("lottie", animation);
   }
-
 }
 
 var name = "@donkeyclip/lottie";
@@ -645,12 +641,12 @@ var peerDependencies = {
 	"@donkeyclip/motorcortex": ">= 8 < 10"
 };
 var devDependencies = {
-	"@babel/cli": "7.19.3",
-	"@babel/core": "7.19.3",
-	"@babel/eslint-parser": "7.19.1",
+	"@babel/cli": "7.21.0",
+	"@babel/core": "7.21.3",
+	"@babel/eslint-parser": "7.21.3",
 	"@babel/plugin-syntax-jsx": "7.18.6",
-	"@babel/plugin-transform-react-jsx": "7.19.0",
-	"@babel/preset-env": "7.19.4",
+	"@babel/plugin-transform-react-jsx": "7.21.0",
+	"@babel/preset-env": "7.20.2",
 	"@donkeyclip/motorcortex": "9.4.1",
 	"@donkeyclip/motorcortex-player": "2.10.8",
 	"@rollup/plugin-babel": "5.3.1",
