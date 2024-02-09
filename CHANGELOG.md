@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.1.2](https://github.com/donkeyclip/lottie/compare/v2.1.1...v2.1.2) (2024-02-09)
+
+
+### Bug Fixes
+
+* **deps:** update dependency lottie-web to v5.10.2 ([468d0f1](https://github.com/donkeyclip/lottie/commit/468d0f15c23f81ceef5f57cf4aed77ab21220633))
+* **deps:** update dependency lottie-web to v5.11.0 ([fe77aa0](https://github.com/donkeyclip/lottie/commit/fe77aa0b1a01ba42c3fb6b731c793f4049869602))
+* **deps:** update dependency lottie-web to v5.12.2 ([dbf873d](https://github.com/donkeyclip/lottie/commit/dbf873d9bb3ac4981bc10b8954a42799ee689f8a))
+
 ### [2.1.1](https://github.com/donkeyclip/lottie/compare/v2.1.0...v2.1.1) (2022-06-26)
 
 
